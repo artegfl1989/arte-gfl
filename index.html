@@ -1,39 +1,131 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleria d'Arte - Lombino Giulio Francesco</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+  <!-- The <font> tag is moved from here -->
+  <!-- Add CSS styles for the fake player -->
+  <style>
+    body {
+        /* Keep existing body background */
+        background-color: blue;
+        /* Remove default body margin */
+        margin: 0;
+        /* Add some padding if needed */
+        padding: 20px;
+    }
+    .fake-player {
+        max-width: 640px; /* Adjust width as needed */
+        margin: 20px auto; /* Center the player */
+        /* background-color: #333; */ /* Removed this line */
+        border: 1px solid #555;
+        position: relative; /* Needed for pseudo-element positioning */
+        aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+        display: flex; /* Keep flex properties if needed for other content, though not strictly necessary for just the ::before */
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Hide overflow */
+    }
+    .play-button {
+        font-size: 80px; /* Size of the play icon */
+        color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+        cursor: pointer; /* Indicate it's clickable (though it won't do anything here) */
+        z-index: 1;
+    }
+    /* Optional: Add a background image to mimic the video */
+    .fake-player::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Verify this path is correct relative to index.html */
+        background: url('giulio china/giulio china 5.png') center center / cover no-repeat;
+        /* filter: blur(2px); */ /* Optional blur remains commented out */
+    }
+    .stats-bar {
+        background-color: #004080; /* Dark blue background for stats */
+        color: white;
+        padding: 8px 15px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between; /* Space out items */
+        align-items: center;
+        /* Position at the bottom relative to the player container if needed, */
+        /* but placing it after the player div is simpler */
+    }
+    .stats-bar span {
+        margin-right: 15px; /* Spacing between stats */
+    }
+    .live-indicator {
+        background-color: red;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 5px; /* Rounded corners */
+        font-weight: bold;
+        font-size: 14px;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>Galleria d'Arte Lombino Giulio Francesco</h1>
-        <p>Opere Originali - Olio su Tela</p>
-    </header>
+<!-- Add the background-color style to the body tag -->
+<body style="background-color: blue;">
+    <!-- The text is now inside an <h1> tag within the body -->
+    <!-- Inline styles are used for centering and applying the original font properties -->
+    <!-- Changed font-size from 7 to xx-large -->
+    <h1 style="font-family: 'Ink Free', sans-serif; font-size: xx-large; color: #FFCC00; text-align: center; margin-top: 0;">
+        Pittore Giulio Francesco Lombino in diretta
+    </h1>
+    <!-- Add the new paragraph with specified styling below the heading -->
+    <!-- Changed font-size from large to x-large -->
+    <p style="font-family: Arial, sans-serif; font-size: x-large; color: #FFFFFF; text-align: center;">
+        Diretta streaming&nbsp; dallo studio Giulio Francesco Lombino
+    </p>
 
-    <main class="gallery">
-        <div class="painting-card">
-            <img src="dipinti/dipinto 1.jpg" alt="dipinto 1">
-            <div class="painting-info">
-                <h3>dipinto 1</h3>
-                <p>Olio su Tela 40x30</p>
-                <p class="price">150 €</p>
-            </div>
+    <!-- Add the fake player structure -->
+    <div class="fake-player">
+        <!-- Simple play button representation - REMOVED -->
+        <!-- The actual video element would go here if it were real -->
+    </div>
+    <div class="stats-bar">
+        <div>
+            <span id="hits-counter">0 hits</span> -
+            <span id="online-counter">0 on-line</span>
         </div>
+        <span class="live-indicator">LIVE</span>
+    </div>
 
-        <div class="painting-card">
-            <img src="dipinti/dipinto 2.jpg" alt="dipinto 2">
-            <div class="painting-info">
-                <h3>dipinto 2</h3>
-                <p>Olio su Tela 40x30</p>
-                <p class="price">150 €</p>
-            </div>
-        </div>
-    </main>
+    <!-- Add JavaScript for counters -->
+    <script>
+        // Function to format numbers with dots (like 223.727)
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        }
 
-    <footer>
-        <p>© 2024 Galleria d'Arte. Tutti i diritti riservati.</p>
-    </footer>
+        // --- Hits Counter (using localStorage) ---
+        const hitsElement = document.getElementById('hits-counter');
+        // Get hits from localStorage, default to 0 if not found
+        let currentHits = parseInt(localStorage.getItem('pageHits') || '0', 10);
+
+        // Increment hits for this visit
+        currentHits += 1;
+
+        // Store updated hits back to localStorage
+        localStorage.setItem('pageHits', currentHits.toString());
+
+        // Display formatted hits
+        hitsElement.textContent = formatNumber(currentHits) + ' hits';
+
+        // --- Online Viewers Counter (random) ---
+        const onlineElement = document.getElementById('online-counter');
+        // Generate random number between 1 and 10
+        const randomOnline = Math.floor(Math.random() * 10) + 1;
+        // Display online count
+        onlineElement.textContent = randomOnline + ' on-line';
+    </script>
+
+    <!-- Any other body content would go here -->
 </body>
 </html>
