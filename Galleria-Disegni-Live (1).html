@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disegni a China - Pittore Giulio Francesco Lombino</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Raleway', sans-serif;
+background-color: #fafafa;
+}
+h1, h2, h3, h4 {
+font-family: 'Playfair Display', serif;
+}
+.logo {
+font-family: 'Pacifico', serif;
+}
+.landscape-bg {
+background-image: url('https://readdy.ai/api/search-image?query=traditional%2520Japanese%2520or%2520Chinese%2520ink%2520landscape%2520painting%2520with%2520mountains%2520and%2520water%252C%2520very%2520minimal%252C%2520black%2520and%2520white%252C%2520elegant%252C%2520traditional%2520style%252C%2520misty%2520mountains%252C%2520subtle%2520details%252C%2520zen%2520aesthetic&width=1920&height=1080&seq=12345&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+appearance: none;
+width: 1.25rem;
+height: 1.25rem;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+background-color: white;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #4f46e5;
+border-color: #4f46e5;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #4f46e5;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+</style>
+</head>
+<body>
+<div class="min-h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-white shadow-sm">
+<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<a href="#" class="logo text-2xl text-primary">Disegni a China</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a href="#" class="text-gray-800 font-medium hover:text-primary transition">Home</a>
+<a href="#" class="text-gray-800 font-medium hover:text-primary transition">Galleria</a>
+<a href="#" class="text-primary font-medium">Live Stream</a>
+</nav>
+<div class="flex items-center">
+<button id="loginBtn" class="text-gray-600 hover:text-primary transition flex items-center gap-1">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span class="hidden md:inline">Amministratore</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<div id="homePage" class="block">
+<!-- Background with opacity -->
+<div class="landscape-bg bg-opacity-10 absolute inset-0 z-0 opacity-20"></div>
+<!-- Content -->
+<div class="container mx-auto px-4 py-8 relative z-10">
+<div class="max-w-5xl mx-auto">
+<!-- Stream Title -->
+<div class="mb-8 text-center">
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Disegni a China</h1>
+<p class="text-gray-600">Pittore Giulio Francesco Lombino</p>
+</div>
+<!-- Fake Webcam Section -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
+<div class="relative aspect-video bg-gray-100">
+<!-- Current Artwork Display -->
+<div id="currentArtwork" class="h-full flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=beautiful%2520detailed%2520chinese%2520ink%2520drawing%2520of%2520bamboo%2520and%2520mountains%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520minimalist%2520approach%252C%2520high%2520contrast&width=800&height=450&seq=12346&orientation=landscape"
+alt="Disegno a China"
+class="max-h-full max-w-full object-contain">
+</div>
+<!-- Stream Overlay -->
+<div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-start">
+<div class="bg-black bg-opacity-70 text-white px-3 py-1.5 rounded-lg flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-record-circle-fill text-red-500"></i>
+</div>
+<span>LIVE</span>
+</div>
+<div class="bg-black bg-opacity-70 text-white px-3 py-1.5 rounded-lg flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-eye-line"></i>
+</div>
+<span id="viewerCount">7</span>
+</div>
+</div>
+<!-- Bottom Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-gradient-to-t from-black to-transparent">
+<div class="text-white">
+<h3 class="font-bold">Paesaggio di Montagna</h3>
+<p class="text-sm opacity-80">26 Aprile 2025</p>
+</div>
+<div class="flex items-center">
+<div class="bg-black bg-opacity-70 text-white px-3 py-1.5 rounded-lg flex items-center mr-3">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-heart-fill text-red-500"></i>
+</div>
+<span id="hitCount">1247</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stream Info -->
+<div class="p-4 border-t border-gray-200">
+<div class="flex justify-between items-center">
+<div>
+<h2 class="text-xl font-bold text-gray-800">Tecnica Sumi-e</h2>
+<p class="text-gray-600">Maestro: Giulio Francesco Lombino</p>
+</div>
+<div id="adminControls" class="hidden">
+<button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-upload-line"></i>
+</div>
+Cambia Disegno
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Gallery Section -->
+<div class="mb-10">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-gray-800">Galleria Recente</h2>
+<div id="adminGalleryControls" class="hidden">
+<button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-add-line"></i>
+</div>
+Aggiungi Disegno
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Gallery Item 1 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520cherry%2520blossoms%2520on%2520branch%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520minimalist%2520approach%252C%2520high%2520contrast&width=400&height=225&seq=12347&orientation=landscape"
+alt="Fiori di Ciliegio"
+class="w-full h-full object-cover object-top">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Fiori di Ciliegio</h3>
+<p class="text-sm text-gray-600">24 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>842 visualizzazioni</span>
+</div>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520a%2520crane%2520bird%2520by%2520water%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520minimalist%2520approach%252C%2520high%2520contrast&width=400&height=225&seq=12348&orientation=landscape"
+alt="Gru Bianca"
+class="w-full h-full object-cover object-top">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Gru Bianca</h3>
+<p class="text-sm text-gray-600">22 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>763 visualizzazioni</span>
+</div>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520koi%2520fish%2520in%2520water%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520minimalist%2520approach%252C%2520high%2520contrast&width=400&height=225&seq=12349&orientation=landscape"
+alt="Carpe Koi"
+class="w-full h-full object-cover object-top">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Carpe Koi</h3>
+<p class="text-sm text-gray-600">20 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>915 visualizzazioni</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Gallery Page -->
+<div id="galleryPage" class="hidden">
+<div class="container mx-auto px-4 py-8">
+<div class="max-w-7xl mx-auto">
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Galleria Completa</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Gallery Items -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520mountain%2520landscape%2520with%2520pagoda%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520high%2520contrast&width=400&height=225&seq=12350&orientation=landscape"
+alt="Paesaggio con Pagoda"
+class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Paesaggio con Pagoda</h3>
+<p class="text-sm text-gray-600">18 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>1,247 visualizzazioni</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520bamboo%2520in%2520wind%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520high%2520contrast&width=400&height=225&seq=12351&orientation=landscape"
+alt="Bambù nel Vento"
+class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Bambù nel Vento</h3>
+<p class="text-sm text-gray-600">16 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>956 visualizzazioni</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="aspect-video bg-gray-100 relative">
+<img src="https://readdy.ai/api/search-image?query=chinese%2520ink%2520drawing%2520of%2520plum%2520blossoms%252C%2520traditional%2520style%252C%2520black%2520and%2520white%252C%2520elegant%2520composition%252C%2520fine%2520details%252C%2520artistic%2520brushwork%252C%2520zen%2520aesthetic%252C%2520high%2520contrast&width=400&height=225&seq=12352&orientation=landscape"
+alt="Fiori di Prugno"
+class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 admin-controls hidden">
+<button class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-gray-800">Fiori di Prugno</h3>
+<p class="text-sm text-gray-600">14 Aprile 2025</p>
+<div class="mt-2 flex items-center text-sm text-gray-500">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-eye-line"></i>
+</div>
+<span>873 visualizzazioni</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const navLinks = document.querySelectorAll('nav a');
+const pages = {
+home: document.getElementById('homePage'),
+gallery: document.getElementById('galleryPage')
+};
+navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const page = this.textContent.toLowerCase();
+navLinks.forEach(l => l.classList.remove('text-primary'));
+this.classList.add('text-primary');
+Object.values(pages).forEach(p => p.classList.add('hidden'));
+if (page === 'home') {
+pages.home.classList.remove('hidden');
+} else if (page === 'galleria') {
+pages.gallery.classList.remove('hidden');
+}
+});
+});
+// Delete artwork functionality for admin
+document.querySelectorAll('.admin-controls button').forEach(button => {
+button.addEventListener('click', function() {
+const artworkCard = this.closest('.bg-white');
+if (confirm('Sei sicuro di voler eliminare questo disegno?')) {
+artworkCard.remove();
+}
+});
+});
+});
+</script>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-4 md:mb-0">
+<a href="#" class="logo text-xl text-white">Disegni a China</a>
+<p class="text-gray-400 mt-2">© 2025 Tutti i diritti riservati</p>
+</div>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white transition">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-instagram-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-facebook-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-twitter-x-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-youtube-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-gray-800">Accesso Amministratore</h2>
+<button id="closeLoginBtn" class="text-gray-500 hover:text-gray-700">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-close-line"></i>
+</div>
+</button>
+</div>
+<form id="loginForm">
+<div class="mb-4">
+<label for="username" class="block text-gray-700 mb-2">Nome Utente</label>
+<input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Inserisci nome utente">
+</div>
+<div class="mb-6">
+<label for="password" class="block text-gray-700 mb-2">Password</label>
+<input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Inserisci password">
+</div>
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center">
+<input type="checkbox" id="remember" class="custom-checkbox mr-2">
+<label for="remember" class="text-gray-700">Ricordami</label>
+</div>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition whitespace-nowrap">Accedi</button>
+</form>
+</div>
+</div>
+<!-- Upload Modal -->
+<div id="uploadModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-gray-800">Carica Nuovo Disegno</h2>
+<button id="closeUploadBtn" class="text-gray-500 hover:text-gray-700">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-close-line"></i>
+</div>
+</button>
+</div>
+<form id="uploadForm">
+<div class="mb-4">
+<label for="artTitle" class="block text-gray-700 mb-2">Titolo</label>
+<input type="text" id="artTitle" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Inserisci titolo">
+</div>
+<div class="mb-6">
+<label class="block text-gray-700 mb-2">Immagine</label>
+<div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+<div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center text-gray-400">
+<i class="ri-upload-2-line ri-2x"></i>
+</div>
+<p class="text-gray-500 mb-2">Trascina qui il file o</p>
+<button type="button" class="text-primary font-medium">Sfoglia file</button>
+<input type="file" class="hidden" accept="image/*">
+</div>
+</div>
+<div class="mb-6">
+<label class="block text-gray-700 mb-2">Opzioni</label>
+<div class="flex items-center mb-2">
+<label class="switch mr-3">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+<span class="text-gray-700">Mostra nella galleria</span>
+</div>
+<div class="flex items-center">
+<label class="switch mr-3">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+<span class="text-gray-700">Imposta come disegno attuale</span>
+</div>
+</div>
+<div class="flex justify-end space-x-3">
+<button type="button" id="cancelUpload" class="px-4 py-2 border border-gray-300 rounded-button text-gray-700 hover:bg-gray-50 transition whitespace-nowrap">Annulla</button>
+<button type="submit" class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 transition whitespace-nowrap">Carica</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Get stored hit count from localStorage or initialize
+let hitCount = localStorage.getItem('hitCount') ? parseInt(localStorage.getItem('hitCount')) : 1247;
+document.getElementById('hitCount').textContent = hitCount;
+// Random viewer count (1-10)
+function updateViewerCount() {
+const viewerCount = Math.floor(Math.random() * 10) + 1;
+document.getElementById('viewerCount').textContent = viewerCount;
+}
+// Update viewer count initially and every 30 seconds
+updateViewerCount();
+setInterval(updateViewerCount, 30000);
+// Increment hit count occasionally
+setInterval(function() {
+if (Math.random() > 0.7) {
+hitCount++;
+document.getElementById('hitCount').textContent = hitCount;
+localStorage.setItem('hitCount', hitCount);
+}
+}, 10000);
+// Login Modal
+const loginBtn = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const closeLoginBtn = document.getElementById('closeLoginBtn');
+const loginForm = document.getElementById('loginForm');
+if (loginBtn) {
+    loginBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        loginModal.classList.remove('hidden');
+    });
+}
+if (closeLoginBtn) {
+    closeLoginBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        loginModal.classList.add('hidden');
+    });
+}
+if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (username === 'giulio' && password === 'Polonia1@@') {
+// Show admin controls
+document.getElementById('adminControls').classList.remove('hidden');
+document.getElementById('adminGalleryControls').classList.remove('hidden');
+document.querySelectorAll('.admin-controls').forEach(el => el.classList.remove('hidden'));
+// Hide login modal
+loginModal.classList.add('hidden');
+// Change login button to show logged in state
+loginBtn.innerHTML = '<div class="w-6 h-6 flex items-center justify-center"><i class="ri-user-fill text-primary"></i></div><span class="hidden md:inline text-primary">Amministratore</span>';
+} else {
+alert('Credenziali non valide. Riprova.');
+}
+});
+// Upload Modal
+const uploadModal = document.getElementById('uploadModal');
+const closeUploadBtn = document.getElementById('closeUploadBtn');
+const cancelUpload = document.getElementById('cancelUpload');
+document.getElementById('adminControls').addEventListener('click', function() {
+uploadModal.classList.remove('hidden');
+});
+document.getElementById('adminGalleryControls').addEventListener('click', function() {
+uploadModal.classList.remove('hidden');
+});
+closeUploadBtn.addEventListener('click', function() {
+uploadModal.classList.add('hidden');
+});
+cancelUpload.addEventListener('click', function() {
+uploadModal.classList.add('hidden');
+});
+// Close modals when clicking outside
+window.addEventListener('click', function(e) {
+if (e.target === loginModal) {
+loginModal.classList.add('hidden');
+}
+if (e.target === uploadModal) {
+uploadModal.classList.add('hidden');
+}
+});
+});
+</script>
+</body>
+</html>
